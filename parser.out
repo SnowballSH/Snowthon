@@ -1,0 +1,2479 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> calc
+Rule 1     calc -> expr
+Rule 2     calc -> var_assign
+Rule 3     calc -> cout
+Rule 4     expr -> LPAREN expr PLUS expr RPAREN
+Rule 5     expr -> LPAREN expr MINUS expr RPAREN
+Rule 6     expr -> LPAREN expr MULTIPLY expr RPAREN
+Rule 7     expr -> LPAREN expr DIVIDE expr RPAREN
+Rule 8     expr -> LPAREN expr INTDIV expr RPAREN
+Rule 9     expr -> LPAREN expr DBEQ expr RPAREN
+Rule 10    expr -> LPAREN expr EXEQ expr RPAREN
+Rule 11    expr -> LPAREN expr LT expr RPAREN
+Rule 12    expr -> LPAREN expr GT expr RPAREN
+Rule 13    expr -> LPAREN EX expr RPAREN
+Rule 14    expr -> expr MULTIPLY expr
+Rule 15    expr -> expr DIVIDE expr
+Rule 16    expr -> expr INTDIV expr
+Rule 17    expr -> expr PLUS expr
+Rule 18    expr -> expr MINUS expr
+Rule 19    expr -> expr DBEQ expr
+Rule 20    expr -> expr EXEQ expr
+Rule 21    expr -> expr LT expr
+Rule 22    expr -> expr GT expr
+Rule 23    expr -> EX expr
+Rule 24    expr -> PLUS expr
+Rule 25    expr -> MINUS expr
+Rule 26    expr -> INT
+Rule 27    expr -> FLOAT
+Rule 28    cout -> IF LPAREN expr RPAREN SEMI cout
+Rule 29    var_assign -> LET ID EQ expr
+Rule 30    cout -> OUTPUT DBLT expr
+Rule 31    expr -> INPUT
+Rule 32    var_assign -> ID DBLT INPUT
+Rule 33    expr -> ID
+
+Terminals, with rules where they appear
+
+DBEQ                 : 9 19
+DBLT                 : 30 32
+DIVIDE               : 7 15
+EQ                   : 29
+EX                   : 13 23
+EXEQ                 : 10 20
+FLOAT                : 27
+GT                   : 12 22
+ID                   : 29 32 33
+IF                   : 28
+INPUT                : 31 32
+INT                  : 26
+INTDIV               : 8 16
+LET                  : 29
+LPAREN               : 4 5 6 7 8 9 10 11 12 13 28
+LT                   : 11 21
+MINUS                : 5 18 25
+MULTIPLY             : 6 14
+OUTPUT               : 30
+PLUS                 : 4 17 24
+RPAREN               : 4 5 6 7 8 9 10 11 12 13 28
+SEMI                 : 28
+error                : 
+
+Nonterminals, with rules where they appear
+
+calc                 : 0
+cout                 : 3 28
+expr                 : 1 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11 11 12 12 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 24 25 28 29 30
+var_assign           : 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . calc
+    (1) calc -> . expr
+    (2) calc -> . var_assign
+    (3) calc -> . cout
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+    (29) var_assign -> . LET ID EQ expr
+    (32) var_assign -> . ID DBLT INPUT
+    (28) cout -> . IF LPAREN expr RPAREN SEMI cout
+    (30) cout -> . OUTPUT DBLT expr
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 12
+    LET             shift and go to state 13
+    IF              shift and go to state 14
+    OUTPUT          shift and go to state 15
+
+    calc                           shift and go to state 1
+    expr                           shift and go to state 2
+    var_assign                     shift and go to state 3
+    cout                           shift and go to state 4
+
+state 1
+
+    (0) S' -> calc .
+
+
+
+state 2
+
+    (1) calc -> expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    $end            reduce using rule 1 (calc -> expr .)
+    MULTIPLY        shift and go to state 16
+    DIVIDE          shift and go to state 17
+    INTDIV          shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+
+state 3
+
+    (2) calc -> var_assign .
+
+    $end            reduce using rule 2 (calc -> var_assign .)
+
+
+state 4
+
+    (3) calc -> cout .
+
+    $end            reduce using rule 3 (calc -> cout .)
+
+
+state 5
+
+    (4) expr -> LPAREN . expr PLUS expr RPAREN
+    (5) expr -> LPAREN . expr MINUS expr RPAREN
+    (6) expr -> LPAREN . expr MULTIPLY expr RPAREN
+    (7) expr -> LPAREN . expr DIVIDE expr RPAREN
+    (8) expr -> LPAREN . expr INTDIV expr RPAREN
+    (9) expr -> LPAREN . expr DBEQ expr RPAREN
+    (10) expr -> LPAREN . expr EXEQ expr RPAREN
+    (11) expr -> LPAREN . expr LT expr RPAREN
+    (12) expr -> LPAREN . expr GT expr RPAREN
+    (13) expr -> LPAREN . EX expr RPAREN
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    EX              shift and go to state 26
+    LPAREN          shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 25
+
+state 6
+
+    (24) expr -> PLUS . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 28
+
+state 7
+
+    (25) expr -> MINUS . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 29
+
+state 8
+
+    (23) expr -> EX . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 30
+
+state 9
+
+    (26) expr -> INT .
+
+    MULTIPLY        reduce using rule 26 (expr -> INT .)
+    DIVIDE          reduce using rule 26 (expr -> INT .)
+    INTDIV          reduce using rule 26 (expr -> INT .)
+    PLUS            reduce using rule 26 (expr -> INT .)
+    MINUS           reduce using rule 26 (expr -> INT .)
+    DBEQ            reduce using rule 26 (expr -> INT .)
+    EXEQ            reduce using rule 26 (expr -> INT .)
+    LT              reduce using rule 26 (expr -> INT .)
+    GT              reduce using rule 26 (expr -> INT .)
+    $end            reduce using rule 26 (expr -> INT .)
+    RPAREN          reduce using rule 26 (expr -> INT .)
+
+
+state 10
+
+    (27) expr -> FLOAT .
+
+    MULTIPLY        reduce using rule 27 (expr -> FLOAT .)
+    DIVIDE          reduce using rule 27 (expr -> FLOAT .)
+    INTDIV          reduce using rule 27 (expr -> FLOAT .)
+    PLUS            reduce using rule 27 (expr -> FLOAT .)
+    MINUS           reduce using rule 27 (expr -> FLOAT .)
+    DBEQ            reduce using rule 27 (expr -> FLOAT .)
+    EXEQ            reduce using rule 27 (expr -> FLOAT .)
+    LT              reduce using rule 27 (expr -> FLOAT .)
+    GT              reduce using rule 27 (expr -> FLOAT .)
+    $end            reduce using rule 27 (expr -> FLOAT .)
+    RPAREN          reduce using rule 27 (expr -> FLOAT .)
+
+
+state 11
+
+    (31) expr -> INPUT .
+
+    MULTIPLY        reduce using rule 31 (expr -> INPUT .)
+    DIVIDE          reduce using rule 31 (expr -> INPUT .)
+    INTDIV          reduce using rule 31 (expr -> INPUT .)
+    PLUS            reduce using rule 31 (expr -> INPUT .)
+    MINUS           reduce using rule 31 (expr -> INPUT .)
+    DBEQ            reduce using rule 31 (expr -> INPUT .)
+    EXEQ            reduce using rule 31 (expr -> INPUT .)
+    LT              reduce using rule 31 (expr -> INPUT .)
+    GT              reduce using rule 31 (expr -> INPUT .)
+    $end            reduce using rule 31 (expr -> INPUT .)
+    RPAREN          reduce using rule 31 (expr -> INPUT .)
+
+
+state 12
+
+    (33) expr -> ID .
+    (32) var_assign -> ID . DBLT INPUT
+
+    MULTIPLY        reduce using rule 33 (expr -> ID .)
+    DIVIDE          reduce using rule 33 (expr -> ID .)
+    INTDIV          reduce using rule 33 (expr -> ID .)
+    PLUS            reduce using rule 33 (expr -> ID .)
+    MINUS           reduce using rule 33 (expr -> ID .)
+    DBEQ            reduce using rule 33 (expr -> ID .)
+    EXEQ            reduce using rule 33 (expr -> ID .)
+    LT              reduce using rule 33 (expr -> ID .)
+    GT              reduce using rule 33 (expr -> ID .)
+    $end            reduce using rule 33 (expr -> ID .)
+    DBLT            shift and go to state 31
+
+
+state 13
+
+    (29) var_assign -> LET . ID EQ expr
+
+    ID              shift and go to state 32
+
+
+state 14
+
+    (28) cout -> IF . LPAREN expr RPAREN SEMI cout
+
+    LPAREN          shift and go to state 33
+
+
+state 15
+
+    (30) cout -> OUTPUT . DBLT expr
+
+    DBLT            shift and go to state 34
+
+
+state 16
+
+    (14) expr -> expr MULTIPLY . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 35
+
+state 17
+
+    (15) expr -> expr DIVIDE . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 36
+
+state 18
+
+    (16) expr -> expr INTDIV . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 37
+
+state 19
+
+    (17) expr -> expr PLUS . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 38
+
+state 20
+
+    (18) expr -> expr MINUS . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 39
+
+state 21
+
+    (19) expr -> expr DBEQ . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 40
+
+state 22
+
+    (20) expr -> expr EXEQ . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 41
+
+state 23
+
+    (21) expr -> expr LT . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 42
+
+state 24
+
+    (22) expr -> expr GT . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 43
+
+state 25
+
+    (4) expr -> LPAREN expr . PLUS expr RPAREN
+    (5) expr -> LPAREN expr . MINUS expr RPAREN
+    (6) expr -> LPAREN expr . MULTIPLY expr RPAREN
+    (7) expr -> LPAREN expr . DIVIDE expr RPAREN
+    (8) expr -> LPAREN expr . INTDIV expr RPAREN
+    (9) expr -> LPAREN expr . DBEQ expr RPAREN
+    (10) expr -> LPAREN expr . EXEQ expr RPAREN
+    (11) expr -> LPAREN expr . LT expr RPAREN
+    (12) expr -> LPAREN expr . GT expr RPAREN
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    PLUS            shift and go to state 44
+    MINUS           shift and go to state 45
+    MULTIPLY        shift and go to state 46
+    DIVIDE          shift and go to state 47
+    INTDIV          shift and go to state 48
+    DBEQ            shift and go to state 49
+    EXEQ            shift and go to state 50
+    LT              shift and go to state 51
+    GT              shift and go to state 52
+
+
+state 26
+
+    (13) expr -> LPAREN EX . expr RPAREN
+    (23) expr -> EX . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 53
+
+state 27
+
+    (33) expr -> ID .
+
+    PLUS            reduce using rule 33 (expr -> ID .)
+    MINUS           reduce using rule 33 (expr -> ID .)
+    MULTIPLY        reduce using rule 33 (expr -> ID .)
+    DIVIDE          reduce using rule 33 (expr -> ID .)
+    INTDIV          reduce using rule 33 (expr -> ID .)
+    DBEQ            reduce using rule 33 (expr -> ID .)
+    EXEQ            reduce using rule 33 (expr -> ID .)
+    LT              reduce using rule 33 (expr -> ID .)
+    GT              reduce using rule 33 (expr -> ID .)
+    $end            reduce using rule 33 (expr -> ID .)
+    RPAREN          reduce using rule 33 (expr -> ID .)
+
+
+state 28
+
+    (24) expr -> PLUS expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    PLUS            reduce using rule 24 (expr -> PLUS expr .)
+    MINUS           reduce using rule 24 (expr -> PLUS expr .)
+    $end            reduce using rule 24 (expr -> PLUS expr .)
+    RPAREN          reduce using rule 24 (expr -> PLUS expr .)
+    MULTIPLY        shift and go to state 16
+    DIVIDE          shift and go to state 17
+    INTDIV          shift and go to state 18
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+  ! MULTIPLY        [ reduce using rule 24 (expr -> PLUS expr .) ]
+  ! DIVIDE          [ reduce using rule 24 (expr -> PLUS expr .) ]
+  ! INTDIV          [ reduce using rule 24 (expr -> PLUS expr .) ]
+  ! DBEQ            [ reduce using rule 24 (expr -> PLUS expr .) ]
+  ! EXEQ            [ reduce using rule 24 (expr -> PLUS expr .) ]
+  ! LT              [ reduce using rule 24 (expr -> PLUS expr .) ]
+  ! GT              [ reduce using rule 24 (expr -> PLUS expr .) ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+
+
+state 29
+
+    (25) expr -> MINUS expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    PLUS            reduce using rule 25 (expr -> MINUS expr .)
+    MINUS           reduce using rule 25 (expr -> MINUS expr .)
+    $end            reduce using rule 25 (expr -> MINUS expr .)
+    RPAREN          reduce using rule 25 (expr -> MINUS expr .)
+    MULTIPLY        shift and go to state 16
+    DIVIDE          shift and go to state 17
+    INTDIV          shift and go to state 18
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+  ! MULTIPLY        [ reduce using rule 25 (expr -> MINUS expr .) ]
+  ! DIVIDE          [ reduce using rule 25 (expr -> MINUS expr .) ]
+  ! INTDIV          [ reduce using rule 25 (expr -> MINUS expr .) ]
+  ! DBEQ            [ reduce using rule 25 (expr -> MINUS expr .) ]
+  ! EXEQ            [ reduce using rule 25 (expr -> MINUS expr .) ]
+  ! LT              [ reduce using rule 25 (expr -> MINUS expr .) ]
+  ! GT              [ reduce using rule 25 (expr -> MINUS expr .) ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+
+
+state 30
+
+    (23) expr -> EX expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    MULTIPLY        reduce using rule 23 (expr -> EX expr .)
+    DIVIDE          reduce using rule 23 (expr -> EX expr .)
+    INTDIV          reduce using rule 23 (expr -> EX expr .)
+    PLUS            reduce using rule 23 (expr -> EX expr .)
+    MINUS           reduce using rule 23 (expr -> EX expr .)
+    DBEQ            reduce using rule 23 (expr -> EX expr .)
+    EXEQ            reduce using rule 23 (expr -> EX expr .)
+    LT              reduce using rule 23 (expr -> EX expr .)
+    GT              reduce using rule 23 (expr -> EX expr .)
+    $end            reduce using rule 23 (expr -> EX expr .)
+    RPAREN          reduce using rule 23 (expr -> EX expr .)
+
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+  ! DBEQ            [ shift and go to state 21 ]
+  ! EXEQ            [ shift and go to state 22 ]
+  ! LT              [ shift and go to state 23 ]
+  ! GT              [ shift and go to state 24 ]
+
+
+state 31
+
+    (32) var_assign -> ID DBLT . INPUT
+
+    INPUT           shift and go to state 54
+
+
+state 32
+
+    (29) var_assign -> LET ID . EQ expr
+
+    EQ              shift and go to state 55
+
+
+state 33
+
+    (28) cout -> IF LPAREN . expr RPAREN SEMI cout
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 56
+
+state 34
+
+    (30) cout -> OUTPUT DBLT . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 57
+
+state 35
+
+    (14) expr -> expr MULTIPLY expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    MULTIPLY        reduce using rule 14 (expr -> expr MULTIPLY expr .)
+    DIVIDE          reduce using rule 14 (expr -> expr MULTIPLY expr .)
+    INTDIV          reduce using rule 14 (expr -> expr MULTIPLY expr .)
+    PLUS            reduce using rule 14 (expr -> expr MULTIPLY expr .)
+    MINUS           reduce using rule 14 (expr -> expr MULTIPLY expr .)
+    $end            reduce using rule 14 (expr -> expr MULTIPLY expr .)
+    RPAREN          reduce using rule 14 (expr -> expr MULTIPLY expr .)
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+  ! DBEQ            [ reduce using rule 14 (expr -> expr MULTIPLY expr .) ]
+  ! EXEQ            [ reduce using rule 14 (expr -> expr MULTIPLY expr .) ]
+  ! LT              [ reduce using rule 14 (expr -> expr MULTIPLY expr .) ]
+  ! GT              [ reduce using rule 14 (expr -> expr MULTIPLY expr .) ]
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+
+
+state 36
+
+    (15) expr -> expr DIVIDE expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    MULTIPLY        reduce using rule 15 (expr -> expr DIVIDE expr .)
+    DIVIDE          reduce using rule 15 (expr -> expr DIVIDE expr .)
+    INTDIV          reduce using rule 15 (expr -> expr DIVIDE expr .)
+    PLUS            reduce using rule 15 (expr -> expr DIVIDE expr .)
+    MINUS           reduce using rule 15 (expr -> expr DIVIDE expr .)
+    $end            reduce using rule 15 (expr -> expr DIVIDE expr .)
+    RPAREN          reduce using rule 15 (expr -> expr DIVIDE expr .)
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+  ! DBEQ            [ reduce using rule 15 (expr -> expr DIVIDE expr .) ]
+  ! EXEQ            [ reduce using rule 15 (expr -> expr DIVIDE expr .) ]
+  ! LT              [ reduce using rule 15 (expr -> expr DIVIDE expr .) ]
+  ! GT              [ reduce using rule 15 (expr -> expr DIVIDE expr .) ]
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+
+
+state 37
+
+    (16) expr -> expr INTDIV expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    MULTIPLY        reduce using rule 16 (expr -> expr INTDIV expr .)
+    DIVIDE          reduce using rule 16 (expr -> expr INTDIV expr .)
+    INTDIV          reduce using rule 16 (expr -> expr INTDIV expr .)
+    PLUS            reduce using rule 16 (expr -> expr INTDIV expr .)
+    MINUS           reduce using rule 16 (expr -> expr INTDIV expr .)
+    $end            reduce using rule 16 (expr -> expr INTDIV expr .)
+    RPAREN          reduce using rule 16 (expr -> expr INTDIV expr .)
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+  ! DBEQ            [ reduce using rule 16 (expr -> expr INTDIV expr .) ]
+  ! EXEQ            [ reduce using rule 16 (expr -> expr INTDIV expr .) ]
+  ! LT              [ reduce using rule 16 (expr -> expr INTDIV expr .) ]
+  ! GT              [ reduce using rule 16 (expr -> expr INTDIV expr .) ]
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+
+
+state 38
+
+    (17) expr -> expr PLUS expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    PLUS            reduce using rule 17 (expr -> expr PLUS expr .)
+    MINUS           reduce using rule 17 (expr -> expr PLUS expr .)
+    $end            reduce using rule 17 (expr -> expr PLUS expr .)
+    RPAREN          reduce using rule 17 (expr -> expr PLUS expr .)
+    MULTIPLY        shift and go to state 16
+    DIVIDE          shift and go to state 17
+    INTDIV          shift and go to state 18
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+  ! MULTIPLY        [ reduce using rule 17 (expr -> expr PLUS expr .) ]
+  ! DIVIDE          [ reduce using rule 17 (expr -> expr PLUS expr .) ]
+  ! INTDIV          [ reduce using rule 17 (expr -> expr PLUS expr .) ]
+  ! DBEQ            [ reduce using rule 17 (expr -> expr PLUS expr .) ]
+  ! EXEQ            [ reduce using rule 17 (expr -> expr PLUS expr .) ]
+  ! LT              [ reduce using rule 17 (expr -> expr PLUS expr .) ]
+  ! GT              [ reduce using rule 17 (expr -> expr PLUS expr .) ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+
+
+state 39
+
+    (18) expr -> expr MINUS expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    PLUS            reduce using rule 18 (expr -> expr MINUS expr .)
+    MINUS           reduce using rule 18 (expr -> expr MINUS expr .)
+    $end            reduce using rule 18 (expr -> expr MINUS expr .)
+    RPAREN          reduce using rule 18 (expr -> expr MINUS expr .)
+    MULTIPLY        shift and go to state 16
+    DIVIDE          shift and go to state 17
+    INTDIV          shift and go to state 18
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+  ! MULTIPLY        [ reduce using rule 18 (expr -> expr MINUS expr .) ]
+  ! DIVIDE          [ reduce using rule 18 (expr -> expr MINUS expr .) ]
+  ! INTDIV          [ reduce using rule 18 (expr -> expr MINUS expr .) ]
+  ! DBEQ            [ reduce using rule 18 (expr -> expr MINUS expr .) ]
+  ! EXEQ            [ reduce using rule 18 (expr -> expr MINUS expr .) ]
+  ! LT              [ reduce using rule 18 (expr -> expr MINUS expr .) ]
+  ! GT              [ reduce using rule 18 (expr -> expr MINUS expr .) ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+
+
+state 40
+
+    (19) expr -> expr DBEQ expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    MULTIPLY        reduce using rule 19 (expr -> expr DBEQ expr .)
+    DIVIDE          reduce using rule 19 (expr -> expr DBEQ expr .)
+    INTDIV          reduce using rule 19 (expr -> expr DBEQ expr .)
+    PLUS            reduce using rule 19 (expr -> expr DBEQ expr .)
+    MINUS           reduce using rule 19 (expr -> expr DBEQ expr .)
+    DBEQ            reduce using rule 19 (expr -> expr DBEQ expr .)
+    EXEQ            reduce using rule 19 (expr -> expr DBEQ expr .)
+    LT              reduce using rule 19 (expr -> expr DBEQ expr .)
+    GT              reduce using rule 19 (expr -> expr DBEQ expr .)
+    $end            reduce using rule 19 (expr -> expr DBEQ expr .)
+    RPAREN          reduce using rule 19 (expr -> expr DBEQ expr .)
+
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+  ! DBEQ            [ shift and go to state 21 ]
+  ! EXEQ            [ shift and go to state 22 ]
+  ! LT              [ shift and go to state 23 ]
+  ! GT              [ shift and go to state 24 ]
+
+
+state 41
+
+    (20) expr -> expr EXEQ expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    MULTIPLY        reduce using rule 20 (expr -> expr EXEQ expr .)
+    DIVIDE          reduce using rule 20 (expr -> expr EXEQ expr .)
+    INTDIV          reduce using rule 20 (expr -> expr EXEQ expr .)
+    PLUS            reduce using rule 20 (expr -> expr EXEQ expr .)
+    MINUS           reduce using rule 20 (expr -> expr EXEQ expr .)
+    DBEQ            reduce using rule 20 (expr -> expr EXEQ expr .)
+    EXEQ            reduce using rule 20 (expr -> expr EXEQ expr .)
+    LT              reduce using rule 20 (expr -> expr EXEQ expr .)
+    GT              reduce using rule 20 (expr -> expr EXEQ expr .)
+    $end            reduce using rule 20 (expr -> expr EXEQ expr .)
+    RPAREN          reduce using rule 20 (expr -> expr EXEQ expr .)
+
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+  ! DBEQ            [ shift and go to state 21 ]
+  ! EXEQ            [ shift and go to state 22 ]
+  ! LT              [ shift and go to state 23 ]
+  ! GT              [ shift and go to state 24 ]
+
+
+state 42
+
+    (21) expr -> expr LT expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    MULTIPLY        reduce using rule 21 (expr -> expr LT expr .)
+    DIVIDE          reduce using rule 21 (expr -> expr LT expr .)
+    INTDIV          reduce using rule 21 (expr -> expr LT expr .)
+    PLUS            reduce using rule 21 (expr -> expr LT expr .)
+    MINUS           reduce using rule 21 (expr -> expr LT expr .)
+    DBEQ            reduce using rule 21 (expr -> expr LT expr .)
+    EXEQ            reduce using rule 21 (expr -> expr LT expr .)
+    LT              reduce using rule 21 (expr -> expr LT expr .)
+    GT              reduce using rule 21 (expr -> expr LT expr .)
+    $end            reduce using rule 21 (expr -> expr LT expr .)
+    RPAREN          reduce using rule 21 (expr -> expr LT expr .)
+
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+  ! DBEQ            [ shift and go to state 21 ]
+  ! EXEQ            [ shift and go to state 22 ]
+  ! LT              [ shift and go to state 23 ]
+  ! GT              [ shift and go to state 24 ]
+
+
+state 43
+
+    (22) expr -> expr GT expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    MULTIPLY        reduce using rule 22 (expr -> expr GT expr .)
+    DIVIDE          reduce using rule 22 (expr -> expr GT expr .)
+    INTDIV          reduce using rule 22 (expr -> expr GT expr .)
+    PLUS            reduce using rule 22 (expr -> expr GT expr .)
+    MINUS           reduce using rule 22 (expr -> expr GT expr .)
+    DBEQ            reduce using rule 22 (expr -> expr GT expr .)
+    EXEQ            reduce using rule 22 (expr -> expr GT expr .)
+    LT              reduce using rule 22 (expr -> expr GT expr .)
+    GT              reduce using rule 22 (expr -> expr GT expr .)
+    $end            reduce using rule 22 (expr -> expr GT expr .)
+    RPAREN          reduce using rule 22 (expr -> expr GT expr .)
+
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+  ! DBEQ            [ shift and go to state 21 ]
+  ! EXEQ            [ shift and go to state 22 ]
+  ! LT              [ shift and go to state 23 ]
+  ! GT              [ shift and go to state 24 ]
+
+
+state 44
+
+    (4) expr -> LPAREN expr PLUS . expr RPAREN
+    (17) expr -> expr PLUS . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 58
+
+state 45
+
+    (5) expr -> LPAREN expr MINUS . expr RPAREN
+    (18) expr -> expr MINUS . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 59
+
+state 46
+
+    (6) expr -> LPAREN expr MULTIPLY . expr RPAREN
+    (14) expr -> expr MULTIPLY . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 60
+
+state 47
+
+    (7) expr -> LPAREN expr DIVIDE . expr RPAREN
+    (15) expr -> expr DIVIDE . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 61
+
+state 48
+
+    (8) expr -> LPAREN expr INTDIV . expr RPAREN
+    (16) expr -> expr INTDIV . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 62
+
+state 49
+
+    (9) expr -> LPAREN expr DBEQ . expr RPAREN
+    (19) expr -> expr DBEQ . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 63
+
+state 50
+
+    (10) expr -> LPAREN expr EXEQ . expr RPAREN
+    (20) expr -> expr EXEQ . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 64
+
+state 51
+
+    (11) expr -> LPAREN expr LT . expr RPAREN
+    (21) expr -> expr LT . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 65
+
+state 52
+
+    (12) expr -> LPAREN expr GT . expr RPAREN
+    (22) expr -> expr GT . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 66
+
+state 53
+
+    (13) expr -> LPAREN EX expr . RPAREN
+    (23) expr -> EX expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    RPAREN          shift and go to state 67
+    PLUS            reduce using rule 23 (expr -> EX expr .)
+    MINUS           reduce using rule 23 (expr -> EX expr .)
+    MULTIPLY        reduce using rule 23 (expr -> EX expr .)
+    DIVIDE          reduce using rule 23 (expr -> EX expr .)
+    INTDIV          reduce using rule 23 (expr -> EX expr .)
+    DBEQ            reduce using rule 23 (expr -> EX expr .)
+    EXEQ            reduce using rule 23 (expr -> EX expr .)
+    LT              reduce using rule 23 (expr -> EX expr .)
+    GT              reduce using rule 23 (expr -> EX expr .)
+
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+  ! DBEQ            [ shift and go to state 21 ]
+  ! EXEQ            [ shift and go to state 22 ]
+  ! LT              [ shift and go to state 23 ]
+  ! GT              [ shift and go to state 24 ]
+
+
+state 54
+
+    (32) var_assign -> ID DBLT INPUT .
+
+    $end            reduce using rule 32 (var_assign -> ID DBLT INPUT .)
+
+
+state 55
+
+    (29) var_assign -> LET ID EQ . expr
+    (4) expr -> . LPAREN expr PLUS expr RPAREN
+    (5) expr -> . LPAREN expr MINUS expr RPAREN
+    (6) expr -> . LPAREN expr MULTIPLY expr RPAREN
+    (7) expr -> . LPAREN expr DIVIDE expr RPAREN
+    (8) expr -> . LPAREN expr INTDIV expr RPAREN
+    (9) expr -> . LPAREN expr DBEQ expr RPAREN
+    (10) expr -> . LPAREN expr EXEQ expr RPAREN
+    (11) expr -> . LPAREN expr LT expr RPAREN
+    (12) expr -> . LPAREN expr GT expr RPAREN
+    (13) expr -> . LPAREN EX expr RPAREN
+    (14) expr -> . expr MULTIPLY expr
+    (15) expr -> . expr DIVIDE expr
+    (16) expr -> . expr INTDIV expr
+    (17) expr -> . expr PLUS expr
+    (18) expr -> . expr MINUS expr
+    (19) expr -> . expr DBEQ expr
+    (20) expr -> . expr EXEQ expr
+    (21) expr -> . expr LT expr
+    (22) expr -> . expr GT expr
+    (23) expr -> . EX expr
+    (24) expr -> . PLUS expr
+    (25) expr -> . MINUS expr
+    (26) expr -> . INT
+    (27) expr -> . FLOAT
+    (31) expr -> . INPUT
+    (33) expr -> . ID
+
+    LPAREN          shift and go to state 5
+    EX              shift and go to state 8
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    INT             shift and go to state 9
+    FLOAT           shift and go to state 10
+    INPUT           shift and go to state 11
+    ID              shift and go to state 27
+
+    expr                           shift and go to state 68
+
+state 56
+
+    (28) cout -> IF LPAREN expr . RPAREN SEMI cout
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    RPAREN          shift and go to state 69
+    MULTIPLY        shift and go to state 16
+    DIVIDE          shift and go to state 17
+    INTDIV          shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+
+state 57
+
+    (30) cout -> OUTPUT DBLT expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    $end            reduce using rule 30 (cout -> OUTPUT DBLT expr .)
+    MULTIPLY        shift and go to state 16
+    DIVIDE          shift and go to state 17
+    INTDIV          shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+
+state 58
+
+    (4) expr -> LPAREN expr PLUS expr . RPAREN
+    (17) expr -> expr PLUS expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    RPAREN          shift and go to state 70
+    PLUS            reduce using rule 17 (expr -> expr PLUS expr .)
+    MINUS           reduce using rule 17 (expr -> expr PLUS expr .)
+    MULTIPLY        shift and go to state 16
+    DIVIDE          shift and go to state 17
+    INTDIV          shift and go to state 18
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+  ! MULTIPLY        [ reduce using rule 17 (expr -> expr PLUS expr .) ]
+  ! DIVIDE          [ reduce using rule 17 (expr -> expr PLUS expr .) ]
+  ! INTDIV          [ reduce using rule 17 (expr -> expr PLUS expr .) ]
+  ! DBEQ            [ reduce using rule 17 (expr -> expr PLUS expr .) ]
+  ! EXEQ            [ reduce using rule 17 (expr -> expr PLUS expr .) ]
+  ! LT              [ reduce using rule 17 (expr -> expr PLUS expr .) ]
+  ! GT              [ reduce using rule 17 (expr -> expr PLUS expr .) ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+
+
+state 59
+
+    (5) expr -> LPAREN expr MINUS expr . RPAREN
+    (18) expr -> expr MINUS expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    RPAREN          shift and go to state 71
+    PLUS            reduce using rule 18 (expr -> expr MINUS expr .)
+    MINUS           reduce using rule 18 (expr -> expr MINUS expr .)
+    MULTIPLY        shift and go to state 16
+    DIVIDE          shift and go to state 17
+    INTDIV          shift and go to state 18
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+  ! MULTIPLY        [ reduce using rule 18 (expr -> expr MINUS expr .) ]
+  ! DIVIDE          [ reduce using rule 18 (expr -> expr MINUS expr .) ]
+  ! INTDIV          [ reduce using rule 18 (expr -> expr MINUS expr .) ]
+  ! DBEQ            [ reduce using rule 18 (expr -> expr MINUS expr .) ]
+  ! EXEQ            [ reduce using rule 18 (expr -> expr MINUS expr .) ]
+  ! LT              [ reduce using rule 18 (expr -> expr MINUS expr .) ]
+  ! GT              [ reduce using rule 18 (expr -> expr MINUS expr .) ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+
+
+state 60
+
+    (6) expr -> LPAREN expr MULTIPLY expr . RPAREN
+    (14) expr -> expr MULTIPLY expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    RPAREN          shift and go to state 72
+    PLUS            reduce using rule 14 (expr -> expr MULTIPLY expr .)
+    MINUS           reduce using rule 14 (expr -> expr MULTIPLY expr .)
+    MULTIPLY        reduce using rule 14 (expr -> expr MULTIPLY expr .)
+    DIVIDE          reduce using rule 14 (expr -> expr MULTIPLY expr .)
+    INTDIV          reduce using rule 14 (expr -> expr MULTIPLY expr .)
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+  ! DBEQ            [ reduce using rule 14 (expr -> expr MULTIPLY expr .) ]
+  ! EXEQ            [ reduce using rule 14 (expr -> expr MULTIPLY expr .) ]
+  ! LT              [ reduce using rule 14 (expr -> expr MULTIPLY expr .) ]
+  ! GT              [ reduce using rule 14 (expr -> expr MULTIPLY expr .) ]
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+
+
+state 61
+
+    (7) expr -> LPAREN expr DIVIDE expr . RPAREN
+    (15) expr -> expr DIVIDE expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    RPAREN          shift and go to state 73
+    PLUS            reduce using rule 15 (expr -> expr DIVIDE expr .)
+    MINUS           reduce using rule 15 (expr -> expr DIVIDE expr .)
+    MULTIPLY        reduce using rule 15 (expr -> expr DIVIDE expr .)
+    DIVIDE          reduce using rule 15 (expr -> expr DIVIDE expr .)
+    INTDIV          reduce using rule 15 (expr -> expr DIVIDE expr .)
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+  ! DBEQ            [ reduce using rule 15 (expr -> expr DIVIDE expr .) ]
+  ! EXEQ            [ reduce using rule 15 (expr -> expr DIVIDE expr .) ]
+  ! LT              [ reduce using rule 15 (expr -> expr DIVIDE expr .) ]
+  ! GT              [ reduce using rule 15 (expr -> expr DIVIDE expr .) ]
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+
+
+state 62
+
+    (8) expr -> LPAREN expr INTDIV expr . RPAREN
+    (16) expr -> expr INTDIV expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    RPAREN          shift and go to state 74
+    PLUS            reduce using rule 16 (expr -> expr INTDIV expr .)
+    MINUS           reduce using rule 16 (expr -> expr INTDIV expr .)
+    MULTIPLY        reduce using rule 16 (expr -> expr INTDIV expr .)
+    DIVIDE          reduce using rule 16 (expr -> expr INTDIV expr .)
+    INTDIV          reduce using rule 16 (expr -> expr INTDIV expr .)
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+  ! DBEQ            [ reduce using rule 16 (expr -> expr INTDIV expr .) ]
+  ! EXEQ            [ reduce using rule 16 (expr -> expr INTDIV expr .) ]
+  ! LT              [ reduce using rule 16 (expr -> expr INTDIV expr .) ]
+  ! GT              [ reduce using rule 16 (expr -> expr INTDIV expr .) ]
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+
+
+state 63
+
+    (9) expr -> LPAREN expr DBEQ expr . RPAREN
+    (19) expr -> expr DBEQ expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    RPAREN          shift and go to state 75
+    PLUS            reduce using rule 19 (expr -> expr DBEQ expr .)
+    MINUS           reduce using rule 19 (expr -> expr DBEQ expr .)
+    MULTIPLY        reduce using rule 19 (expr -> expr DBEQ expr .)
+    DIVIDE          reduce using rule 19 (expr -> expr DBEQ expr .)
+    INTDIV          reduce using rule 19 (expr -> expr DBEQ expr .)
+    DBEQ            reduce using rule 19 (expr -> expr DBEQ expr .)
+    EXEQ            reduce using rule 19 (expr -> expr DBEQ expr .)
+    LT              reduce using rule 19 (expr -> expr DBEQ expr .)
+    GT              reduce using rule 19 (expr -> expr DBEQ expr .)
+
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+  ! DBEQ            [ shift and go to state 21 ]
+  ! EXEQ            [ shift and go to state 22 ]
+  ! LT              [ shift and go to state 23 ]
+  ! GT              [ shift and go to state 24 ]
+
+
+state 64
+
+    (10) expr -> LPAREN expr EXEQ expr . RPAREN
+    (20) expr -> expr EXEQ expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    RPAREN          shift and go to state 76
+    PLUS            reduce using rule 20 (expr -> expr EXEQ expr .)
+    MINUS           reduce using rule 20 (expr -> expr EXEQ expr .)
+    MULTIPLY        reduce using rule 20 (expr -> expr EXEQ expr .)
+    DIVIDE          reduce using rule 20 (expr -> expr EXEQ expr .)
+    INTDIV          reduce using rule 20 (expr -> expr EXEQ expr .)
+    DBEQ            reduce using rule 20 (expr -> expr EXEQ expr .)
+    EXEQ            reduce using rule 20 (expr -> expr EXEQ expr .)
+    LT              reduce using rule 20 (expr -> expr EXEQ expr .)
+    GT              reduce using rule 20 (expr -> expr EXEQ expr .)
+
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+  ! DBEQ            [ shift and go to state 21 ]
+  ! EXEQ            [ shift and go to state 22 ]
+  ! LT              [ shift and go to state 23 ]
+  ! GT              [ shift and go to state 24 ]
+
+
+state 65
+
+    (11) expr -> LPAREN expr LT expr . RPAREN
+    (21) expr -> expr LT expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    RPAREN          shift and go to state 77
+    PLUS            reduce using rule 21 (expr -> expr LT expr .)
+    MINUS           reduce using rule 21 (expr -> expr LT expr .)
+    MULTIPLY        reduce using rule 21 (expr -> expr LT expr .)
+    DIVIDE          reduce using rule 21 (expr -> expr LT expr .)
+    INTDIV          reduce using rule 21 (expr -> expr LT expr .)
+    DBEQ            reduce using rule 21 (expr -> expr LT expr .)
+    EXEQ            reduce using rule 21 (expr -> expr LT expr .)
+    LT              reduce using rule 21 (expr -> expr LT expr .)
+    GT              reduce using rule 21 (expr -> expr LT expr .)
+
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+  ! DBEQ            [ shift and go to state 21 ]
+  ! EXEQ            [ shift and go to state 22 ]
+  ! LT              [ shift and go to state 23 ]
+  ! GT              [ shift and go to state 24 ]
+
+
+state 66
+
+    (12) expr -> LPAREN expr GT expr . RPAREN
+    (22) expr -> expr GT expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    RPAREN          shift and go to state 78
+    PLUS            reduce using rule 22 (expr -> expr GT expr .)
+    MINUS           reduce using rule 22 (expr -> expr GT expr .)
+    MULTIPLY        reduce using rule 22 (expr -> expr GT expr .)
+    DIVIDE          reduce using rule 22 (expr -> expr GT expr .)
+    INTDIV          reduce using rule 22 (expr -> expr GT expr .)
+    DBEQ            reduce using rule 22 (expr -> expr GT expr .)
+    EXEQ            reduce using rule 22 (expr -> expr GT expr .)
+    LT              reduce using rule 22 (expr -> expr GT expr .)
+    GT              reduce using rule 22 (expr -> expr GT expr .)
+
+  ! MULTIPLY        [ shift and go to state 16 ]
+  ! DIVIDE          [ shift and go to state 17 ]
+  ! INTDIV          [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 19 ]
+  ! MINUS           [ shift and go to state 20 ]
+  ! DBEQ            [ shift and go to state 21 ]
+  ! EXEQ            [ shift and go to state 22 ]
+  ! LT              [ shift and go to state 23 ]
+  ! GT              [ shift and go to state 24 ]
+
+
+state 67
+
+    (13) expr -> LPAREN EX expr RPAREN .
+
+    MULTIPLY        reduce using rule 13 (expr -> LPAREN EX expr RPAREN .)
+    DIVIDE          reduce using rule 13 (expr -> LPAREN EX expr RPAREN .)
+    INTDIV          reduce using rule 13 (expr -> LPAREN EX expr RPAREN .)
+    PLUS            reduce using rule 13 (expr -> LPAREN EX expr RPAREN .)
+    MINUS           reduce using rule 13 (expr -> LPAREN EX expr RPAREN .)
+    DBEQ            reduce using rule 13 (expr -> LPAREN EX expr RPAREN .)
+    EXEQ            reduce using rule 13 (expr -> LPAREN EX expr RPAREN .)
+    LT              reduce using rule 13 (expr -> LPAREN EX expr RPAREN .)
+    GT              reduce using rule 13 (expr -> LPAREN EX expr RPAREN .)
+    $end            reduce using rule 13 (expr -> LPAREN EX expr RPAREN .)
+    RPAREN          reduce using rule 13 (expr -> LPAREN EX expr RPAREN .)
+
+
+state 68
+
+    (29) var_assign -> LET ID EQ expr .
+    (14) expr -> expr . MULTIPLY expr
+    (15) expr -> expr . DIVIDE expr
+    (16) expr -> expr . INTDIV expr
+    (17) expr -> expr . PLUS expr
+    (18) expr -> expr . MINUS expr
+    (19) expr -> expr . DBEQ expr
+    (20) expr -> expr . EXEQ expr
+    (21) expr -> expr . LT expr
+    (22) expr -> expr . GT expr
+
+    $end            reduce using rule 29 (var_assign -> LET ID EQ expr .)
+    MULTIPLY        shift and go to state 16
+    DIVIDE          shift and go to state 17
+    INTDIV          shift and go to state 18
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    DBEQ            shift and go to state 21
+    EXEQ            shift and go to state 22
+    LT              shift and go to state 23
+    GT              shift and go to state 24
+
+
+state 69
+
+    (28) cout -> IF LPAREN expr RPAREN . SEMI cout
+
+    SEMI            shift and go to state 79
+
+
+state 70
+
+    (4) expr -> LPAREN expr PLUS expr RPAREN .
+
+    MULTIPLY        reduce using rule 4 (expr -> LPAREN expr PLUS expr RPAREN .)
+    DIVIDE          reduce using rule 4 (expr -> LPAREN expr PLUS expr RPAREN .)
+    INTDIV          reduce using rule 4 (expr -> LPAREN expr PLUS expr RPAREN .)
+    PLUS            reduce using rule 4 (expr -> LPAREN expr PLUS expr RPAREN .)
+    MINUS           reduce using rule 4 (expr -> LPAREN expr PLUS expr RPAREN .)
+    DBEQ            reduce using rule 4 (expr -> LPAREN expr PLUS expr RPAREN .)
+    EXEQ            reduce using rule 4 (expr -> LPAREN expr PLUS expr RPAREN .)
+    LT              reduce using rule 4 (expr -> LPAREN expr PLUS expr RPAREN .)
+    GT              reduce using rule 4 (expr -> LPAREN expr PLUS expr RPAREN .)
+    $end            reduce using rule 4 (expr -> LPAREN expr PLUS expr RPAREN .)
+    RPAREN          reduce using rule 4 (expr -> LPAREN expr PLUS expr RPAREN .)
+
+
+state 71
+
+    (5) expr -> LPAREN expr MINUS expr RPAREN .
+
+    MULTIPLY        reduce using rule 5 (expr -> LPAREN expr MINUS expr RPAREN .)
+    DIVIDE          reduce using rule 5 (expr -> LPAREN expr MINUS expr RPAREN .)
+    INTDIV          reduce using rule 5 (expr -> LPAREN expr MINUS expr RPAREN .)
+    PLUS            reduce using rule 5 (expr -> LPAREN expr MINUS expr RPAREN .)
+    MINUS           reduce using rule 5 (expr -> LPAREN expr MINUS expr RPAREN .)
+    DBEQ            reduce using rule 5 (expr -> LPAREN expr MINUS expr RPAREN .)
+    EXEQ            reduce using rule 5 (expr -> LPAREN expr MINUS expr RPAREN .)
+    LT              reduce using rule 5 (expr -> LPAREN expr MINUS expr RPAREN .)
+    GT              reduce using rule 5 (expr -> LPAREN expr MINUS expr RPAREN .)
+    $end            reduce using rule 5 (expr -> LPAREN expr MINUS expr RPAREN .)
+    RPAREN          reduce using rule 5 (expr -> LPAREN expr MINUS expr RPAREN .)
+
+
+state 72
+
+    (6) expr -> LPAREN expr MULTIPLY expr RPAREN .
+
+    MULTIPLY        reduce using rule 6 (expr -> LPAREN expr MULTIPLY expr RPAREN .)
+    DIVIDE          reduce using rule 6 (expr -> LPAREN expr MULTIPLY expr RPAREN .)
+    INTDIV          reduce using rule 6 (expr -> LPAREN expr MULTIPLY expr RPAREN .)
+    PLUS            reduce using rule 6 (expr -> LPAREN expr MULTIPLY expr RPAREN .)
+    MINUS           reduce using rule 6 (expr -> LPAREN expr MULTIPLY expr RPAREN .)
+    DBEQ            reduce using rule 6 (expr -> LPAREN expr MULTIPLY expr RPAREN .)
+    EXEQ            reduce using rule 6 (expr -> LPAREN expr MULTIPLY expr RPAREN .)
+    LT              reduce using rule 6 (expr -> LPAREN expr MULTIPLY expr RPAREN .)
+    GT              reduce using rule 6 (expr -> LPAREN expr MULTIPLY expr RPAREN .)
+    $end            reduce using rule 6 (expr -> LPAREN expr MULTIPLY expr RPAREN .)
+    RPAREN          reduce using rule 6 (expr -> LPAREN expr MULTIPLY expr RPAREN .)
+
+
+state 73
+
+    (7) expr -> LPAREN expr DIVIDE expr RPAREN .
+
+    MULTIPLY        reduce using rule 7 (expr -> LPAREN expr DIVIDE expr RPAREN .)
+    DIVIDE          reduce using rule 7 (expr -> LPAREN expr DIVIDE expr RPAREN .)
+    INTDIV          reduce using rule 7 (expr -> LPAREN expr DIVIDE expr RPAREN .)
+    PLUS            reduce using rule 7 (expr -> LPAREN expr DIVIDE expr RPAREN .)
+    MINUS           reduce using rule 7 (expr -> LPAREN expr DIVIDE expr RPAREN .)
+    DBEQ            reduce using rule 7 (expr -> LPAREN expr DIVIDE expr RPAREN .)
+    EXEQ            reduce using rule 7 (expr -> LPAREN expr DIVIDE expr RPAREN .)
+    LT              reduce using rule 7 (expr -> LPAREN expr DIVIDE expr RPAREN .)
+    GT              reduce using rule 7 (expr -> LPAREN expr DIVIDE expr RPAREN .)
+    $end            reduce using rule 7 (expr -> LPAREN expr DIVIDE expr RPAREN .)
+    RPAREN          reduce using rule 7 (expr -> LPAREN expr DIVIDE expr RPAREN .)
+
+
+state 74
+
+    (8) expr -> LPAREN expr INTDIV expr RPAREN .
+
+    MULTIPLY        reduce using rule 8 (expr -> LPAREN expr INTDIV expr RPAREN .)
+    DIVIDE          reduce using rule 8 (expr -> LPAREN expr INTDIV expr RPAREN .)
+    INTDIV          reduce using rule 8 (expr -> LPAREN expr INTDIV expr RPAREN .)
+    PLUS            reduce using rule 8 (expr -> LPAREN expr INTDIV expr RPAREN .)
+    MINUS           reduce using rule 8 (expr -> LPAREN expr INTDIV expr RPAREN .)
+    DBEQ            reduce using rule 8 (expr -> LPAREN expr INTDIV expr RPAREN .)
+    EXEQ            reduce using rule 8 (expr -> LPAREN expr INTDIV expr RPAREN .)
+    LT              reduce using rule 8 (expr -> LPAREN expr INTDIV expr RPAREN .)
+    GT              reduce using rule 8 (expr -> LPAREN expr INTDIV expr RPAREN .)
+    $end            reduce using rule 8 (expr -> LPAREN expr INTDIV expr RPAREN .)
+    RPAREN          reduce using rule 8 (expr -> LPAREN expr INTDIV expr RPAREN .)
+
+
+state 75
+
+    (9) expr -> LPAREN expr DBEQ expr RPAREN .
+
+    MULTIPLY        reduce using rule 9 (expr -> LPAREN expr DBEQ expr RPAREN .)
+    DIVIDE          reduce using rule 9 (expr -> LPAREN expr DBEQ expr RPAREN .)
+    INTDIV          reduce using rule 9 (expr -> LPAREN expr DBEQ expr RPAREN .)
+    PLUS            reduce using rule 9 (expr -> LPAREN expr DBEQ expr RPAREN .)
+    MINUS           reduce using rule 9 (expr -> LPAREN expr DBEQ expr RPAREN .)
+    DBEQ            reduce using rule 9 (expr -> LPAREN expr DBEQ expr RPAREN .)
+    EXEQ            reduce using rule 9 (expr -> LPAREN expr DBEQ expr RPAREN .)
+    LT              reduce using rule 9 (expr -> LPAREN expr DBEQ expr RPAREN .)
+    GT              reduce using rule 9 (expr -> LPAREN expr DBEQ expr RPAREN .)
+    $end            reduce using rule 9 (expr -> LPAREN expr DBEQ expr RPAREN .)
+    RPAREN          reduce using rule 9 (expr -> LPAREN expr DBEQ expr RPAREN .)
+
+
+state 76
+
+    (10) expr -> LPAREN expr EXEQ expr RPAREN .
+
+    MULTIPLY        reduce using rule 10 (expr -> LPAREN expr EXEQ expr RPAREN .)
+    DIVIDE          reduce using rule 10 (expr -> LPAREN expr EXEQ expr RPAREN .)
+    INTDIV          reduce using rule 10 (expr -> LPAREN expr EXEQ expr RPAREN .)
+    PLUS            reduce using rule 10 (expr -> LPAREN expr EXEQ expr RPAREN .)
+    MINUS           reduce using rule 10 (expr -> LPAREN expr EXEQ expr RPAREN .)
+    DBEQ            reduce using rule 10 (expr -> LPAREN expr EXEQ expr RPAREN .)
+    EXEQ            reduce using rule 10 (expr -> LPAREN expr EXEQ expr RPAREN .)
+    LT              reduce using rule 10 (expr -> LPAREN expr EXEQ expr RPAREN .)
+    GT              reduce using rule 10 (expr -> LPAREN expr EXEQ expr RPAREN .)
+    $end            reduce using rule 10 (expr -> LPAREN expr EXEQ expr RPAREN .)
+    RPAREN          reduce using rule 10 (expr -> LPAREN expr EXEQ expr RPAREN .)
+
+
+state 77
+
+    (11) expr -> LPAREN expr LT expr RPAREN .
+
+    MULTIPLY        reduce using rule 11 (expr -> LPAREN expr LT expr RPAREN .)
+    DIVIDE          reduce using rule 11 (expr -> LPAREN expr LT expr RPAREN .)
+    INTDIV          reduce using rule 11 (expr -> LPAREN expr LT expr RPAREN .)
+    PLUS            reduce using rule 11 (expr -> LPAREN expr LT expr RPAREN .)
+    MINUS           reduce using rule 11 (expr -> LPAREN expr LT expr RPAREN .)
+    DBEQ            reduce using rule 11 (expr -> LPAREN expr LT expr RPAREN .)
+    EXEQ            reduce using rule 11 (expr -> LPAREN expr LT expr RPAREN .)
+    LT              reduce using rule 11 (expr -> LPAREN expr LT expr RPAREN .)
+    GT              reduce using rule 11 (expr -> LPAREN expr LT expr RPAREN .)
+    $end            reduce using rule 11 (expr -> LPAREN expr LT expr RPAREN .)
+    RPAREN          reduce using rule 11 (expr -> LPAREN expr LT expr RPAREN .)
+
+
+state 78
+
+    (12) expr -> LPAREN expr GT expr RPAREN .
+
+    MULTIPLY        reduce using rule 12 (expr -> LPAREN expr GT expr RPAREN .)
+    DIVIDE          reduce using rule 12 (expr -> LPAREN expr GT expr RPAREN .)
+    INTDIV          reduce using rule 12 (expr -> LPAREN expr GT expr RPAREN .)
+    PLUS            reduce using rule 12 (expr -> LPAREN expr GT expr RPAREN .)
+    MINUS           reduce using rule 12 (expr -> LPAREN expr GT expr RPAREN .)
+    DBEQ            reduce using rule 12 (expr -> LPAREN expr GT expr RPAREN .)
+    EXEQ            reduce using rule 12 (expr -> LPAREN expr GT expr RPAREN .)
+    LT              reduce using rule 12 (expr -> LPAREN expr GT expr RPAREN .)
+    GT              reduce using rule 12 (expr -> LPAREN expr GT expr RPAREN .)
+    $end            reduce using rule 12 (expr -> LPAREN expr GT expr RPAREN .)
+    RPAREN          reduce using rule 12 (expr -> LPAREN expr GT expr RPAREN .)
+
+
+state 79
+
+    (28) cout -> IF LPAREN expr RPAREN SEMI . cout
+    (28) cout -> . IF LPAREN expr RPAREN SEMI cout
+    (30) cout -> . OUTPUT DBLT expr
+
+    IF              shift and go to state 14
+    OUTPUT          shift and go to state 15
+
+    cout                           shift and go to state 80
+
+state 80
+
+    (28) cout -> IF LPAREN expr RPAREN SEMI cout .
+
+    $end            reduce using rule 28 (cout -> IF LPAREN expr RPAREN SEMI cout .)
+

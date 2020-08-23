@@ -168,9 +168,6 @@ def p_error(p):
         pass
 
 
-
-
-
 def p_calc(p):
     """
     calc : expr

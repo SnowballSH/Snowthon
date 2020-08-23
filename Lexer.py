@@ -6,12 +6,15 @@ tokens = (
     # Types
     'INT',
     'FLOAT',
+    'STRING',
     'ID',
     # Keywords
     'LET',
     'IF',
+    'ELSE',
     'OUTPUT',
     'INPUT',
+    'FUNC',
     # Equals
     'EQ',
     'DBEQ',
@@ -25,14 +28,23 @@ tokens = (
     # Brackets
     'LPAREN',
     'RPAREN',
+    'LCURLY',
+    'RCURLY',
     # Colons
-    'SEMI',
+    'COLON',
+    'COMMA',
     # Signs
     'DBLT',
     'LT',
     'GT',
     'EX',
+    # Others
+    'LINE',
 )
+
+##########
+# LEXER #
+##########
 
 # Regular expression rules for simple tokens
 t_PLUS = r'\+'
@@ -42,22 +54,19 @@ t_DIVIDE = r'/'
 t_INTDIV = r'//'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
+t_LCURLY = r'{'
+t_RCURLY = r'}'
 t_DBEQ = r'=='
 t_EXEQ = r'!='
 t_EQ = r'\='
-t_SEMI = r':'
+t_COLON = r':'
+t_COMMA = r","
 t_LT = r'<'
 t_GT = r'>'
 t_DBLT = r'<<'
 t_EX = r'!'
+t_LINE = r'\|'
 
-
-# A regular expression rule with some action code
-# Note addition of self parameter since we're in a class
-
-##########
-# LEXER #
-##########
 
 def t_FLOAT(t):
     r"""\d+\.\d+"""
@@ -71,6 +80,12 @@ def t_INT(t):
     return t
 
 
+def t_STRING(t):
+    r""""[a-zA-Z_ 0-9]*\""""
+    t.value = str(t.value)[1:-1]
+    return t
+
+
 def t_LET(t):
     r"""let"""
     t.type = "LET"
@@ -80,6 +95,18 @@ def t_LET(t):
 def t_IF(t):
     r"""if"""
     t.type = "IF"
+    return t
+
+
+def t_ELSE(t):
+    r"""else"""
+    t.type = "ELSE"
+    return t
+
+
+def t_FUNC(t):
+    r"""func"""
+    t.type = "FUNC"
     return t
 
 
@@ -124,7 +151,7 @@ precedence = (
     ('left', 'PLUS', 'MINUS'),
     ('left', 'MULTIPLY', 'DIVIDE', 'INTDIV'),
     ('left', 'DBEQ', 'EXEQ', 'LT', 'GT'),
-    ('left', 'EX')
+    ('left', 'EX'),
 )
 
 
@@ -145,20 +172,11 @@ def p_calc(p):
     """
     calc : expr
          | var_assign
+         | func_assign
          | cout
     """
-    try:
-        res, err = run(p[1])
-        if err:
-            print(err)
-        elif res is not None:
-            if res is not True:
-                print(res)
-
-        else:
-            pass
-    except:
-        pass
+    # run(("calc", p[1]))
+    p[0] = ("calc", p[1])
 
 
 def p_expr(p):
@@ -179,6 +197,17 @@ def p_expr(p):
         p[0] = (p[3], p[2], p[4])
     else:
         p[0] = (p[2], ("num", 0), p[3])
+
+
+def p_multi_calc(p):
+    """
+    multi_calc : multi_calc LINE calc
+               | calc
+    """
+    if len(p) == 4:
+        p[0] = ("multi", p[1], p[3])
+    else:
+        p[0] = ("single", p[1])
 
 
 def p_bin_op(p):
@@ -217,11 +246,47 @@ def p_factor(p):
     p[0] = ("num", p[1])
 
 
-def p_flow(p):
+def p_multi_expr(p):
     """
-    cout : IF LPAREN expr RPAREN SEMI cout
+    multi_expr : multi_expr COMMA expr
+               | expr
     """
-    p[0] = ("flow", p[3], p[6])
+    if len(p) == 4:
+        p[0] = ("multi_expr", p[1], p[3])
+    else:
+        p[0] = ("single_expr", p[1])
+
+
+def p_string(p):
+    """
+    expr : STRING
+    """
+    p[0] = ("str", p[1])
+
+
+def p_multi_id(p):
+    """
+    multi_id : multi_id COMMA ID
+             | ID
+    """
+    if len(p) == 4:
+        p[0] = ("multi_id", p[1], p[3])
+    else:
+        p[0] = ("single_id", p[1])
+
+
+def p_if_else(p):
+    """
+    calc : IF LPAREN expr RPAREN LCURLY multi_calc ELSE multi_calc RCURLY
+    """
+    p[0] = ("flow_else", p[3], p[6], p[8])
+
+
+def p_if(p):
+    """
+    calc : IF LPAREN expr RPAREN LCURLY multi_calc RCURLY
+    """
+    p[0] = ("flow_if", p[3], p[6])
 
 
 def p_var_assign(p):
@@ -229,6 +294,13 @@ def p_var_assign(p):
     var_assign : LET ID EQ expr
     """
     p[0] = ("var_assign", p[2], p[4])
+
+
+def p_func_assign(p):
+    """
+    func_assign : FUNC ID LPAREN multi_id RPAREN LCURLY multi_calc RCURLY
+    """
+    p[0] = ("func_assign", p[2], p[4], p[7])
 
 
 def p_cout(p):
@@ -249,6 +321,13 @@ def p_cin(p):
         p[0] = ("var_assign", p[1], ("cin", None))
 
 
+def p_func_access(p):
+    """
+    calc : ID LPAREN multi_expr RPAREN
+    """
+    p[0] = ("func_access", p[1], p[3])
+
+
 def p_var_access(p):
     """
     expr : ID
@@ -261,7 +340,7 @@ parser = yacc.yacc()
 ############
 # Compiler #
 ############
-var_tree = {}
+global_var_tree = {}
 
 
 def check(p):
@@ -270,12 +349,12 @@ def check(p):
     return p[0]
 
 
-def bin_op(p):
+def bin_op(p, var_tree):
     op = p[0]
-    left = check(run(p[1]))
+    left = check(run(p[1], var_tree=var_tree))
     if left is None:
         return None, left
-    right = check(run(p[2]))
+    right = check(run(p[2], var_tree=var_tree))
     if right is None:
         return None, right
 
@@ -307,51 +386,130 @@ def bin_op(p):
     return op, None
 
 
-def run(p):
+def run(p, var_tree=None):
+    if var_tree is None:
+        var_tree = global_var_tree
+    if p[0] == "calc":
+        try:
+            res, err = run(p[1], var_tree=var_tree)
+            if err:
+                print(err)
+            elif res is not None:
+                if res is not True:
+                    print(res)
+            else:
+                pass
+        except:
+            pass
+    # Multi
+    if p[0] == "multi":
+        r = run(p[1], var_tree=var_tree)
+        if r[1]:
+            return None, r[1]
+        r = run(p[2], var_tree=var_tree)
+        if r[1]:
+            return None, r[1]
+        return True, None
+    if p[0] == "single":
+        r = run(p[1], var_tree=var_tree)
+        if r[1]:
+            return None, r[1]
+        return True, None
+
     # Types
     if p[0] == "num":
         return p[1], None
+    if p[0] == "str":
+        return p[1], None
     if p[0] == "unary":
         if p[1] == "+":
-            return bin_op(("*", p[2], ("num", 1)))
+            return bin_op(("*", p[2], ("num", 1)), var_tree=var_tree)
         if p[1] == "-":
-            return bin_op(("*", p[2], ("num", -1)))
+            return bin_op(("*", p[2], ("num", -1)), var_tree=var_tree)
+
     # Operators
     if p[0] in ["+", "-", "*", "/", "//", "==", "!=", "<", ">", "!"]:
-        return bin_op(p)
+        return bin_op(p, var_tree=var_tree)
 
     # Var
+    def sep(ids):
+        lst = []
+        if ids[0].startswith("multi"):
+            left = ids[1]
+            right = ids[2]
+            lst.append(right)
+            for s in sep(left):
+                lst.append(s)
+        else:
+            lst.append(ids[1])
+        return lst
+
     if p[0] == "var_access":
         v_name = p[1]
         if v_name in var_tree:
             r = var_tree[v_name]
-            return r, None
+            if r[0] == "var":
+                return r[1], None
+            else:
+                return None, "accessing a function"
         else:
             return None, f"NameError: {v_name} is not defined"
+
+    if p[0] == "func_access":
+        local_tree = global_var_tree.copy()
+        f_name = p[1]
+        if f_name in var_tree:
+            r = var_tree[f_name]
+            if r[0] == "func":
+                local_vars = sep(p[2])
+                body = r[2]
+                for i, v in enumerate(local_vars):
+                    x = run(v, var_tree=local_tree)
+                    if x[1]:
+                        return None, x[1]
+                    local_tree[r[1][i]] = ("var", x[0])
+                res = run(body, var_tree=local_tree)
+                if res[1]:
+                    return None, res[1]
+                return True, None
+            else:
+                return None, "accessing a var"
+        else:
+            return None, f"NameError: {f_name} is not defined"
+
     if p[0] == "var_assign":
-        r = run(p[2])
+        r = run(p[2], var_tree=var_tree)
         if r[1]:
             return None, r[1]
-        var_tree[p[1]] = r[0]
+        var_tree[p[1]] = ("var", r[0])
+        return True, None
+
+    if p[0] == "func_assign":
+        var_tree[p[1]] = ("func", sep(p[2]), p[3])
         return True, None
 
     # Flow
-    if p[0] == "flow":
+    if p[0].startswith("flow"):
         cond = p[1]
         do = p[2]
-        r = run(cond)
+        r = run(cond, var_tree=var_tree)
         if r[1]:
             return None, r[1]
         if r[0] == 1:
-            r = run(do)
+            r = run(do, var_tree=var_tree)
             if r[1]:
                 return None, r[1]
+        else:
+            if p[0].endswith("else"):
+                r = run(p[3], var_tree=var_tree)
+                if r[1]:
+                    return None, r[1]
             # return r[0], None
         return True, None
 
     # IO
     if p[0] == 'cout':
-        r = run(p[1])
+        r = run(p[1], var_tree=var_tree)
         if r[1]:
             return None, r[1]
         print(r[0])
@@ -359,7 +517,7 @@ def run(p):
 
     if p[0] == 'cin':
         r = ('num', int(input()))
-        r = run(r)
+        r = run(r, var_tree=var_tree)
         if r[1]:
             return None, r[1]
         return r[0], None
@@ -370,7 +528,8 @@ def run(p):
 
 # Test it output
 def test(data):
-    parser.parse(data)
+    p = parser.parse(data)
+    run(p)
 
 
 if __name__ == "__main__":

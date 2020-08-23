@@ -7,7 +7,9 @@ def run(filename):
         for c in code:
             c = c.strip()
             if c != "" and not c.startswith("#"):
-                Lexer.test(c)
+                a = Lexer.test(c)
+                if a[1]:
+                    print(a[1])
 
 
 run("test.snow")

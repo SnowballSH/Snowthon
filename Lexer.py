@@ -81,7 +81,7 @@ def t_INT(t):
 
 
 def t_STRING(t):
-    r""""[a-zA-Z_ 0-9]*\""""
+    r""""[a-zA-Z_ 0-9!?]*\""""
     t.value = str(t.value)[1:-1]
     return t
 
@@ -168,12 +168,16 @@ def p_error(p):
         pass
 
 
+
+
+
 def p_calc(p):
     """
     calc : expr
          | var_assign
          | func_assign
          | cout
+         | empty
     """
     # run(("calc", p[1]))
     p[0] = ("calc", p[1])
@@ -250,9 +254,12 @@ def p_multi_expr(p):
     """
     multi_expr : multi_expr COMMA expr
                | expr
+               | empty
     """
     if len(p) == 4:
         p[0] = ("multi_expr", p[1], p[3])
+    elif p[1] is None:
+        p[0] = ()
     else:
         p[0] = ("single_expr", p[1])
 
@@ -268,9 +275,12 @@ def p_multi_id(p):
     """
     multi_id : multi_id COMMA ID
              | ID
+             | empty
     """
     if len(p) == 4:
         p[0] = ("multi_id", p[1], p[3])
+    elif p[1] is None:
+        p[0] = ()
     else:
         p[0] = ("single_id", p[1])
 
@@ -333,6 +343,11 @@ def p_var_access(p):
     expr : ID
     """
     p[0] = ("var_access", p[1])
+
+
+def p_empty(_):
+    """empty :"""
+    pass
 
 
 parser = yacc.yacc()
@@ -434,6 +449,8 @@ def run(p, var_tree=None):
     # Var
     def sep(ids):
         lst = []
+        if len(ids) == 0:
+            return lst
         if ids[0].startswith("multi"):
             left = ids[1]
             right = ids[2]
@@ -463,6 +480,8 @@ def run(p, var_tree=None):
             if r[0] == "func":
                 local_vars = sep(p[2])
                 body = r[2]
+                if len(local_vars) != len(r[1]):
+                    return None, "ArgumentError: too many or too less arguments"
                 for i, v in enumerate(local_vars):
                     x = run(v, var_tree=local_tree)
                     if x[1]:
@@ -529,7 +548,7 @@ def run(p, var_tree=None):
 # Test it output
 def test(data):
     p = parser.parse(data)
-    run(p)
+    return run(p)
 
 
 if __name__ == "__main__":
